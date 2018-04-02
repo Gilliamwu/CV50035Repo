@@ -1,3 +1,5 @@
+import numpy as np 
+
 def normalize_grayscale(image, beta=0.75, image_id_k = 1, A_kp=None):
     N,M = image.shape
     k = image_id_k
