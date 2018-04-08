@@ -1,5 +1,6 @@
 import numpy as np
 import cv2
+import sys
 
 def get_images(inputs, path = '', converter = lambda x : x, nptype = np.float32):
 	'''
@@ -10,9 +11,8 @@ def get_images(inputs, path = '', converter = lambda x : x, nptype = np.float32)
 	Returns a np.array
 	'''
 	imgs = []
-	
-	for s in inputs:
-		file_path = '{path}\\{img}'.format(path = path, img = converter(s))
+	for s in inputs:     
+		file_path = '{path}/{img}'.format(path = path, img = converter(s))
 		img = cv2.imread(file_path, 0).astype(nptype)
 		imgs.append(img)
 		
@@ -32,13 +32,16 @@ def get_random_indices(select_range, train_size, test_size, val_size):
 
 # concrete data set helpers
 def _concrete_file_name_get_positive(n):
+
     if n >= 10000 and n <= 19378:
-        return 'Positive\\{n:05d}_1.jpg'.format(n = n)
+
+        return 'Positive/{n:05d}_1.jpg'.format(n = n)
     else:
-        return 'Positive\\{n:05d}.jpg'.format(n = n)
+
+        return 'Positive/{n:05d}.jpg'.format(n = n)
 
 def _concrete_file_name_get_negative(n):
-    return 'Negative\\{n:05d}.jpg'.format(n = n)
+    return 'Negative/{n:05d}.jpg'.format(n = n)
 
 # use this
 def get_concrete_data(positive_range, negative_range, path = ''):
