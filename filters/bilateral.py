@@ -4,11 +4,11 @@ from .filter import GrayscaleNormalizer
 
 from sklearn import linear_model
 
-class grayscale_all:
+class bilateral_canny:
 	def __init__(self):
 		self.normalizer = GrayscaleNormalizer()
 
-	def grayscale_img(self, img):
+	def bilateral_canny_img(self, img):
 	    img2 = self.normalizer(img)
 	    img2 = np.uint8(img2)
 	    blur = cv2.bilateralFilter(img2,10,20,20)
@@ -16,3 +16,10 @@ class grayscale_all:
 	    myfiltered = cv2.Canny(blur,100,200)
 	    #myfiltered = myfiltered.reshape(-1)
 	    return myfiltered
+    
+	def canny_img(self, img):
+	    img = np.uint8(img)
+	    myfiltered = cv2.Canny(img,100,200)
+	    #myfiltered = myfiltered.reshape(-1)
+	    return myfiltered
+        
