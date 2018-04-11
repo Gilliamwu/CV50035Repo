@@ -1,3 +1,4 @@
 from .get_image import *
-from .rolling_window import rolling_window, get_stride
+from .rolling_window import *
 from .shade_area import *
+from .utils import *
