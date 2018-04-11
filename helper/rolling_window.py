@@ -1,4 +1,5 @@
 import numpy as np
+from math import ceil, floor
 
 def rolling_window(image, window_size, stride):
     '''
@@ -25,3 +26,16 @@ def rolling_window(image, window_size, stride):
             arr[i, j, :, :] = image[ x : x + winX, y : y + winY]
     
     return arr
+
+def get_stride(image_size, window_size, coverage = 0.5):
+	X, Y = image_size
+	wX, wY = window_size
+	
+	sX = _get_stride_calc(X, wX, coverage)
+	sY = _get_stride_calc(Y, wY, coverage)
+	
+	return sX, sY
+	
+def _get_stride_calc(img, win, coverage):
+	n_wins = ceil( (img - win) / floor(win * coverage) )
+	return floor( (img - win) / n_wins )

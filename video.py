@@ -1,5 +1,6 @@
 import cv2
 import os
+import time
 
 """
 Here is sample usage:
@@ -16,9 +17,9 @@ class video:
     def __init__(self, video_loc):
         self.video_loc = video_loc
         self.cap = None
-        self.video_length = -1
-        self.fps=-1
-        self.duration = -1
+        self.video_length = None
+        self.fps= None
+        self.duration = None
         self.frame_loc = None
         self.frame_format = None
         
@@ -62,7 +63,7 @@ class video:
 
     def frames_to_video(self, output_loc, fps=None, input_loc=None, 
                         input_format=None, codec = "mp4v",
-                       width=None, height = None):
+                       width=None, height = None, debug=False):
         """
         output_loc: locatoin to put movie, please contains extension, 
         fps: by default 30, or use what is stored in this class
@@ -82,15 +83,18 @@ class video:
             fps = self.fps
         
         if fps is None:
-            print("[INFO] fps not defined from parameter or input. getting fps from origional video")
+            if debug:
+                print("[INFO] fps not defined from parameter or input. getting fps from origional video")
             self.start_cap()
             self.cap.release()
             fps=self.fps
+            if debug:
+                print("[INFO] actual fps is {}".format(fps))
             
-        if fps is None:
+        if fps is None and debug:
             print("[ERROR] fps can't be specified. please manually input fps as parameter")
             
-        if input_loc is None or not os.path.exists(input_loc):
+        if ( input_loc is None or not os.path.exists(input_loc)) and debug:
             print("[ERROR] frame folder location '{}' doesn't exist".format(input_loc))
         
         images = []
@@ -115,20 +119,22 @@ class video:
         for image in images:
             image_path = os.path.join(input_loc, image)
             frame = cv2.imread(image_path)
-
-            print("[INFO] reading {}".format(image))
+            if debug:
+                print("[INFO] reading {}".format(image))
             out.write(frame) # Write out frame to video
             cv2.imshow('video', frame)
             if (cv2.waitKey(1) & 0xFF) == ord('q'): # Hit `q` to exit
                 break
 
         # Release everything if job is finished
-        print("[INFO] cleaning up video writer")
+        if debug:
+            print("[INFO] cleaning up video writer")
         cv2.destroyAllWindows()
         out.release()
 
         # Log the time again
         time_end = time.time()
-        print ("It took %d seconds forconversion." % (time_end-time_start))
+        if debug:
+            print ("It took %d seconds forconversion." % (time_end-time_start))
         
         print("The output video is {}".format(output_loc))
