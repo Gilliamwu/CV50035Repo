@@ -2,13 +2,16 @@ import cv2
 import numpy as np
 
 def tophat( img, element=(5, 5) ):
-	return cv2_morphology( img, cv2.MORPH_TOPHAT, element )
+	kernel = cv2.getStructuringElement(cv2.MORPH_CROSS,element)
+	return cv2.morphologyEx( img, cv2.MORPH_TOPHAT, kernel )
 
 def blackhat( img, element = (5, 5) ):
-	return cv2_morphology( img, cv2.MORPH_BLACKHAT, element )
+	kernel = cv2.getStructuringElement(cv2.MORPH_CROSS,element)
+	return cv2.morphologyEx( img, cv2.MORPH_BLACKHAT, kernel )
 	
 def gradient( img, element = (5, 5) ):
-	return cv2_morphology( img, cv2.MORPH_GRADIENT, element )
+	kernel = cv2.getStructuringElement(cv2.MORPH_CROSS,element)
+	return sv2.morphologyEx( img, cv2.MORPH_GRADIENT, kernel )
 
 def gradient2( img ):
 	
