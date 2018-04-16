@@ -1,6 +1,9 @@
 helper/__pycache__/
 filters/__pycache__/
 preprocessing/__pycache__/
+helper/__pycache__
+filters/__pycache__
+preprocessing/__pycache__
 vide_processing_test.ipynb
 Particle filter.ipynb
 out.xlsx
