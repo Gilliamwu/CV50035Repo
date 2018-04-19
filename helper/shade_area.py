@@ -25,7 +25,22 @@ def shade_area(img, imgs, result, window_size, stride, thickness = (8, 8)):
 	boxed[mask] = 255, 255, 0
 				
 	return boxed
-
+def shade_area_old(img, result, window_size, stride, line_size = 5):
+    boxed = np.array(img)
+    X, Y = img.shape[0:2]
+    sX, sY = stride
+    wX, wY = window_size
+    nX, nY = result.shape
+    
+    for i in range(nX):
+        for j in range(nY):
+            if result[i, j] == 1.0:
+                x = i * sX
+                y = j * sY
+                
+                boxed[x:x+wX, y:y+wY] = img[x:x+wX, y:y+wY] * 0.75
+    
+    return boxed
 def generate_shadowed_img(origin, cannyed, model, stride = (106,112), window_size = (227, 227)):
 	imgs = rolling_window(cannyed, window_size, stride)
 	nx, ny = imgs.shape[0], imgs.shape[1]
