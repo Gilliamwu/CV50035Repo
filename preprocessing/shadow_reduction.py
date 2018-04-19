@@ -1,4 +1,5 @@
 import cv2
+import numpy as np
 
 def norm_dilate_median(origin_img):
     result_planes = []
@@ -21,4 +22,4 @@ def norm_dilate_median(origin_img):
     return result_norm
 
 def adaptiveThreshold(origin_img):
-    return cv2.adaptiveThreshold(origin_img ,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,11,5)
+    return cv2.adaptiveThreshold(origin_img.astype(np.uint8) ,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,11,5)

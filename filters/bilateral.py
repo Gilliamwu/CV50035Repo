@@ -4,7 +4,7 @@ import numpy as np
 
 from sklearn import linear_model
 
-class bilateral_canny:
+class BilateralCanny:
 	def __init__(self):
 		#self.normalizer = GrayscaleNormalizer()
 		pass

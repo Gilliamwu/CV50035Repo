@@ -1,3 +1,4 @@
+import cv2
 import numpy as np 
 
 class GrayscaleNormalizer:
@@ -22,3 +23,4 @@ class GrayscaleNormalizer:
         
         image = 128*(image/self.A_kp)
         return image
+	

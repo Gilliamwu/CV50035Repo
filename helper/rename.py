@@ -8,16 +8,13 @@ def rename(dir, pattern, titlePattern, count=0):
 	count = 0
 	for pathAndFilename in glob.iglob(os.path.join(dir, pattern)):
 		title, ext = os.path.splitext(os.path.basename(pathAndFilename))
-		#print(ext)
-		os.rename(pathAndFilename, os.path.join(dir, titlePattern % (count) + '.jpg'))
+		os.rename(pathAndFilename, os.path.join(dir, titlePattern % (count)))
 		count += 1
 	    
-"""
-SAMPLE RUNNING CODE:
-dir = "F:\\term7\\CV\\ProjectTrail\\crack\\Negative"
+
+#SAMPLE RUNNING CODE:
+dir = "F:\\term7\\CV\\ProjectTrail\\A_manualLabel\\Negative\\Negative"
 pattern = r'*.jpg'
 titlePattern = r'%05d.jpg'
 count = 0
 rename(dir, pattern, titlePattern, count=0)
-"""
-    
