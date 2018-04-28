@@ -8,6 +8,7 @@ Filter Preview.ipynb : Testing of combination of every filters.
 
 FiltersModels.ipynb : Testing the accuracy of combination of every filters and models.
 
+Result_Example_adaptivethreshold.mov: Example of video output.
 
 ## Structure
 Filters:
