@@ -2,7 +2,7 @@
 ## Key functionalities:
 CNN with TF.ipynb : visualization of CNN we have used. 
 
-video generation clean version with filters.ipynb: how we extract frames, apply model and output a video.
+Sliding_video_gens.ipynb: how we extract frames, apply model and output a video.
 
 Filter Preview.ipynb : Testing of combination of every filters.
 
